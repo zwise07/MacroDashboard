@@ -57,19 +57,26 @@
     flex-shrink: 0;
     text-transform: uppercase;
   }
+  .ticker-outer {
+    overflow: hidden;
+    flex: 1;
+    display: flex;
+  }
   .ticker-track {
     display: flex;
-    animation: tickerScroll 30s linear infinite;
+    animation: tickerScroll 40s linear infinite;
     white-space: nowrap;
+    will-change: transform;
   }
   .ticker-item {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11px;
-    padding: 0 32px;
+    padding: 0 40px;
     color: var(--text-dim);
     display: flex;
     gap: 8px;
     align-items: center;
+    flex-shrink: 0;
   }
   .ticker-item .val { font-weight: 600; }
   .ticker-item .up { color: var(--accent-green); }
@@ -125,7 +132,6 @@
     font-size: 13px;
     color: var(--text-muted);
     font-family: 'IBM Plex Mono', monospace;
-    margin-bottom: 32px;
     margin-top: 12px;
   }
   .hero-layout {
@@ -137,7 +143,7 @@
   .hero-left {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
   }
   .verdict-banner {
     background: var(--surface2);
@@ -162,7 +168,6 @@
     color: var(--text-dim);
     font-style: italic;
   }
-  .verdict-text strong { color: var(--text); font-style: normal; }
 
   /* STATUS GRID */
   .status-grid {
@@ -214,22 +219,6 @@
     color: var(--text-muted);
     line-height: 1.4;
   }
-  .card-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    margin-top: 8px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    border-radius: 2px;
-    background: rgba(255,255,255,0.05);
-    color: var(--card-color, var(--text-muted));
-    border: 1px solid currentColor;
-    opacity: 0.8;
-  }
 
   /* DETAIL PANEL */
   .detail-panel {
@@ -276,7 +265,6 @@
     line-height: 1.75;
     color: var(--text-dim);
   }
-  .panel-body strong { color: var(--text-dim); font-weight: normal; }
   .stat-row {
     display: flex;
     justify-content: space-between;
@@ -288,28 +276,8 @@
   .stat-row:last-child { border-bottom: none; }
   .stat-row .label { color: var(--text-muted); font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
   .stat-row .value { font-weight: 600; font-family: 'IBM Plex Mono', monospace; }
-  .mini-chart {
-    height: 60px;
-    display: flex;
-    align-items: flex-end;
-    gap: 3px;
-    margin: 16px 0;
-  }
-  .mini-bar {
-    flex: 1;
-    border-radius: 2px 2px 0 0;
-    min-height: 4px;
-    transition: opacity 0.2s;
-  }
-  .mini-bar:hover { opacity: 0.7; }
-  .chart-labels {
-    display: flex;
-    justify-content: space-between;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    color: var(--text-muted);
-    margin-bottom: 4px;
-  }
+
+
 
   /* PREDICTION SECTION */
   .prediction-section {
@@ -389,43 +357,9 @@
     line-height: 1.7;
     color: var(--text-dim);
   }
-  .chain-text strong { color: var(--text-dim); font-weight: normal; }
   .chain-item:last-child .chain-dot { border-color: var(--accent-amber); }
   .chain-item:last-child .chain-tag { color: var(--accent-amber); }
   .chain-item:last-child .chain-line { display: none; }
-
-  /* MODELS SECTION */
-  .models-section {
-    padding: 48px;
-    border-bottom: 1px solid var(--border);
-  }
-  .models-section h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px;
-    letter-spacing: 0.05em;
-    margin-bottom: 32px;
-  }
-  .models-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-  .model-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 24px;
-  }
-  .model-title {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
-  }
-  .model-svg { width: 100%; }
 
   /* SOURCES */
   .sources-section {
@@ -473,49 +407,6 @@
     font-size: 10px;
     color: var(--text-muted);
   }
-
-  /* HEALTH METER */
-  .health-meter {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-top: 24px;
-  }
-  .meter-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    flex-shrink: 0;
-  }
-  .meter-track {
-    flex: 1;
-    max-width: 300px;
-    height: 6px;
-    background: var(--surface2);
-    border-radius: 3px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-  }
-  .meter-fill {
-    height: 100%;
-    width: 38%;
-    background: linear-gradient(to right, var(--accent-red), var(--accent-amber));
-    border-radius: 3px;
-  }
-  .meter-pct {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    color: var(--accent-amber);
-  }
-  .meter-verdict {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    color: var(--accent-red);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
 </style>
 </head>
 <body>
@@ -523,19 +414,24 @@
 <!-- TICKER -->
 <div class="ticker-bar">
   <div class="ticker-label">INDICATORS</div>
-  <div style="overflow:hidden;flex:1">
-    <div class="ticker-track">
+  <div class="ticker-outer">
+    <div class="ticker-track" id="tickerTrack">
+      <div class="ticker-item">GDP Q1 2026 <span class="val warn">+0.49%</span></div>
       <div class="ticker-item">UNEMPLOYMENT <span class="val warn">4.3%</span></div>
-      <div class="ticker-item">NATIONAL DEBT <span class="val down">$36.22T+</span></div>
+      <div class="ticker-item">CPI-U Q1 2026 <span class="val down">+1.78%</span></div>
+      <div class="ticker-item">NATIONAL DEBT <span class="val down">~$38.5T</span></div>
       <div class="ticker-item">NET EXPORTS <span class="val down">−$107.46B</span></div>
-      <div class="ticker-item">MFG PRODUCTIVITY <span class="val up">+3.08%</span></div>
-      <div class="ticker-item">DEBT%GDP <span class="val warn">~125%</span></div>
-      <!-- Duplicate for seamless loop -->
+      <div class="ticker-item">MFG PRODUCTIVITY <span class="val up">+3.08% YoY</span></div>
+      <div class="ticker-item">DEBT / GDP <span class="val warn">~125%</span></div>
+      <div class="ticker-item">2025 DEFICIT <span class="val down">+$2.30T</span></div>
+      <div class="ticker-item">GDP Q1 2026 <span class="val warn">+0.49%</span></div>
       <div class="ticker-item">UNEMPLOYMENT <span class="val warn">4.3%</span></div>
-      <div class="ticker-item">NATIONAL DEBT <span class="val down">$36.22T+</span></div>
+      <div class="ticker-item">CPI-U Q1 2026 <span class="val down">+1.78%</span></div>
+      <div class="ticker-item">NATIONAL DEBT <span class="val down">~$38.5T</span></div>
       <div class="ticker-item">NET EXPORTS <span class="val down">−$107.46B</span></div>
-      <div class="ticker-item">MFG PRODUCTIVITY <span class="val up">+3.08%</span></div>
-      <div class="ticker-item">DEBT/GDP <span class="val warn">~125%</span></div>
+      <div class="ticker-item">MFG PRODUCTIVITY <span class="val up">+3.08% YoY</span></div>
+      <div class="ticker-item">DEBT / GDP <span class="val warn">~125%</span></div>
+      <div class="ticker-item">2025 DEFICIT <span class="val down">+$2.30T</span></div>
     </div>
   </div>
 </div>
@@ -547,12 +443,11 @@
     <div class="hero-left">
       <h1>U.S. ECONOMIC<br><span>HEALTH</span> DASHBOARD</h1>
       <div class="hero-sub">ZACHARY WISE · KOEN TEAGUE · PEYTON COOK &nbsp;|&nbsp; DATA FROM 2024 TO Q1 2026 &nbsp;|&nbsp; PROJECTION: 2028</div>
-      </div>
     </div>
     <div class="verdict-banner">
       <div class="verdict-label">▶ THESIS</div>
       <div class="verdict-text">
-        <strong>Although the U.S. economy appears to be strong in the short run because of continued GDP growth, stable unemployment, and rising manufacturing productivity, the economy is ultimately unhealthy because of the long-run effects of its large deficit spending, inflation, and stubborn net exports.</strong>
+        Although the U.S. economy appears to be strong in the short run because of continued GDP growth, stable unemployment, and rising manufacturing productivity, the economy is ultimately unhealthy because of the long-run effects of its large deficit spending, inflation, and stubborn net exports.
       </div>
     </div>
   </div>
@@ -607,9 +502,7 @@
   </div>
   <div>
     <div class="panel-section-label">Analysis</div>
-    <div class="panel-body">
-      Figure 1 shows an upward trend in the Real GDP, despite a notable dip to about <strong>$23.55 Trillion in Q1 2025</strong> that rapidly recovered to about <strong>$24.5 Trillion</strong> over the next two quarters. However, after that rapid growth ending in Q3 2025, the GDP has experienced a more gradual increase over the past three quarters, indicating <strong>moderate economic growth</strong>.
-    </div>
+    <div class="panel-body">Figure 1 shows an upward trend in the Real GDP, despite a notable dip to about $23.55 Trillion in Q1 2025 that rapidly recovered to about $24.5 Trillion over the next two quarters. However, after that rapid growth ending in Q3 2025, the GDP has experienced a more gradual increase over the past three quarters, indicating moderate economic growth.</div>
     <br>
     <div class="panel-section-label">Source</div>
     <div class="panel-body" style="font-family:'IBM Plex Mono',monospace;font-size:10px">BEA / FRED — GDPC1 series.<br>U.S. Bureau of Economic Analysis. "Real Gross Domestic Product." FRED, 2026.</div>
@@ -631,9 +524,7 @@
   </div>
   <div>
     <div class="panel-section-label">Analysis</div>
-    <div class="panel-body">
-      Figure 2 shows that the unemployment rate has <strong>fluctuated greatly</strong> from 2024 to 2026, but overall has experienced a gradual increase by <strong>+0.6%</strong>. Starting at 3.7%, a rate below the estimated NRU of 4–5%, the unemployment rate has climbed to a peak of <strong>4.5% in late 2025</strong>, and now sits at 4.3%. This indicates that the economy has been <strong>cooling down</strong> as it is moving from unsustainable output to a more comfortable natural rate of unemployment.
-    </div>
+    <div class="panel-body">Figure 2 shows that the unemployment rate has fluctuated greatly from 2024 to 2026, but overall has experienced a gradual increase by +0.6%. Starting at 3.7%, a rate below the estimated NRU of 4–5%, the unemployment rate has climbed to a peak of 4.5% in late 2025, and now sits at 4.3%. This indicates that the economy has been cooling down as it is moving from unsustainable output to a more comfortable natural rate of unemployment.</div>
     <br>
     <div class="panel-section-label">Source</div>
     <div class="panel-body" style="font-family:'IBM Plex Mono',monospace;font-size:10px">BLS / FRED — UNRATE series.<br>U.S. Bureau of Labor Statistics. "Unemployment Rate." FRED, 2026.</div>
@@ -654,9 +545,7 @@
   </div>
   <div>
     <div class="panel-section-label">Analysis</div>
-    <div class="panel-body">
-      Figure 3 shows a steady increase in the CPI from 2024 to 2026. Although there is a gap in October 2025 and there are slight dips, there has been an <strong>overall increase in price level by about +7.25%</strong> over the past two years. Additionally, it can be seen that the <strong>slope steepened around early 2026</strong>, indicating a greater rate of increase in the cost of living.
-    </div>
+    <div class="panel-body">Figure 3 shows a steady increase in the CPI from 2024 to 2026. Although there is a gap in October 2025 and there are slight dips, there has been an overall increase in price level by about +7.25% over the past two years. Additionally, it can be seen that the slope steepened around early 2026, indicating a greater rate of increase in the cost of living.</div>
     <br>
     <div class="panel-section-label">Source</div>
     <div class="panel-body" style="font-family:'IBM Plex Mono',monospace;font-size:10px">BLS / FRED — CPIAUCSL series.<br>U.S. Bureau of Labor Statistics. "Consumer Price Index—All Urban Consumers." FRED, 2026.</div>
@@ -679,10 +568,7 @@
   </div>
   <div>
     <div class="panel-section-label">Analysis</div>
-    <div class="panel-body">
-      Figure 4 shows a steady increase in debt until Q2 of 2025, followed by a <strong>rapid increase after that</strong>. However, it appears that from Q2 2025 to Q4 2025, growth is faster than previously from 2024 to 2025, as the debt has grown by around <strong>$2.5 Trillion in the past three quarters alone</strong>, reaching a peak of $38.5 Trillion that is only continuing to grow. Excessive, rapid government spending means increased borrowing and can lead to <strong>increased real interest rates</strong>, possibly crowding out private investment.<br><br>
-      Figure 7 shows an overall <strong>2% increase</strong> in the percentage of the GDP made up of public debt from 2024 to 2026. There was a 2% increase from Q2 to Q4 2024, but it then decreased by about 2.5% in 2025, followed by a <strong>rapid increase by about 3.5%</strong> through late 2025.
-    </div>
+    <div class="panel-body">Figure 4 shows a steady increase in debt until Q2 of 2025, followed by a rapid increase after that. However, it appears that from Q2 2025 to Q4 2025, growth is faster than previously from 2024 to 2025, as the debt has grown by around $2.5 Trillion in the past three quarters alone, reaching a peak of $38.5 Trillion that is only continuing to grow. Excessive, rapid government spending means increased borrowing and can lead to increased real interest rates, possibly crowding out private investment.<br><br>Figure 7 shows an overall 2% increase in the percentage of the GDP made up of public debt from 2024 to 2026. There was a 2% increase from Q2 to Q4 2024, but it then decreased by about 2.5% in 2025, followed by a rapid increase by about 3.5% through late 2025.</div>
     <br>
     <div class="panel-section-label">Source</div>
     <div class="panel-body" style="font-family:'IBM Plex Mono',monospace;font-size:10px">Treasury / FRED — GFDEBTN, GFDEGDQ188S.<br>U.S. Department of the Treasury. "Federal Debt: Total Public Debt." FRED, 2026.</div>
@@ -703,9 +589,7 @@
   </div>
   <div>
     <div class="panel-section-label">Analysis</div>
-    <div class="panel-body">
-      Figure 5 shows <strong>fluctuating negative net exports</strong>, indicating that America is a large importer. Net exports hit an extreme low of around <strong>$1.3 trillion in Q1 2025</strong>, followed by a rapid correction to about $750 billion before entering another downward trend through 2026. This variation is likely due to the <strong>uncertainty of tariffs and global tensions</strong>.
-    </div>
+    <div class="panel-body">Figure 5 shows fluctuating negative net exports, indicating that America is a large importer. Net exports hit an extreme low of around $1.3 trillion in Q1 2025, followed by a rapid correction to about $750 billion before entering another downward trend through 2026. This variation is likely due to the uncertainty of tariffs and global tensions.</div>
     <br>
     <div class="panel-section-label">Source</div>
     <div class="panel-body" style="font-family:'IBM Plex Mono',monospace;font-size:10px">BEA / Census / FRED — NETEXP series.<br>U.S. Bureau of Economic Analysis. "Net Exports of Goods and Services." FRED, 2026.</div>
@@ -723,14 +607,13 @@
   </div>
   <div>
     <div class="panel-section-label">Analysis</div>
-    <div class="panel-body">
-      Figure 6 shows <strong>rapid growth in manufacturing productivity</strong> starting in 2025 following a plateau throughout 2024. From Q1 2025 to Q1 2026, productivity has increased by about <strong>3.08%</strong>, indicating growth in the manufacturing industry.
-    </div>
+    <div class="panel-body">Figure 6 shows rapid growth in manufacturing productivity starting in 2025 following a plateau throughout 2024. From Q1 2025 to Q1 2026, productivity has increased by about 3.08%, indicating growth in the manufacturing industry.</div>
     <br>
     <div class="panel-section-label">Source</div>
     <div class="panel-body" style="font-family:'IBM Plex Mono',monospace;font-size:10px">BLS / FRED — PRS30006092 series.<br>U.S. Bureau of Labor Statistics. "Manufacturing Sector: Labor Productivity (Output per Hour) for All Workers." FRED, 2026.</div>
   </div>
 </div>
+
 <!-- PREDICTION SECTION -->
 <div class="prediction-section">
   <div class="section-eyebrow">2028 Forecast</div>
@@ -743,7 +626,7 @@
         <div class="chain-line"></div>
       </div>
       <div class="chain-content">
-        <div class="chain-tag">Current  Performance</div>
+        <div class="chain-tag">Current Performance</div>
         <div class="chain-text">The 2.16% GDP growth in 2025, combined with stable unemployment, suggests that the U.S. economy remains relatively stable in the short run. However, the slowdown in GDP growth during the first quarter of 2026 indicates that economic expansion may be weakening heading into the future.</div>
       </div>
     </div>
@@ -754,7 +637,7 @@
       </div>
       <div class="chain-content">
         <div class="chain-tag">Trade and Net Exports</div>
-        <div class="chain-text">Although tariffs were intended to reduce imports and strengthen domestic manufacturing, net exports have declined by roughly $150 billion over the past three quarters. This suggests that increased domestic production has not created a lasting improvement in the trade balance, meaning the external sector continues to place downward pressure on economic growth.</div>
+        <div class="chain-text">Although tariffs were intended to reduce imports and strengthen domestic manufacturing, net exports have declined by roughly $150 billion over the past three quarters. This suggests that the increased manufacturing productivity has not resulted in sustained improvement in the trade balance.</div>
       </div>
     </div>
     <div class="chain-item">
@@ -784,7 +667,7 @@
       </div>
       <div class="chain-content">
         <div class="chain-tag">Crowding Out and Investment</div>
-        <div class="chain-text">Higher interest rates make borrowing more expensive for firms, reducing their incentive to finance expansion and capital projects. As a result, private investment spending is likely to decrease by 2028 due to the crowding out effect, where government borrowing and tight monetary policy reduce private sector access to affordable credit.</div>
+        <div class="chain-text">Higher interest rates make borrowing more expensive for firms, reducing their incentive to invest money for growth. As a result, private investment spending is likely to decrease by 2028 due to the crowding out effect, as government borrowing reduces the private sector's access to affordable loans.</div>
       </div>
     </div>
     <div class="chain-item">
@@ -852,15 +735,9 @@
   function showPanel(id) {
     const allPanels = document.querySelectorAll('.detail-panel');
     const allTabs = document.querySelectorAll('.status-card');
-
     allPanels.forEach(p => p.classList.remove('active'));
     allTabs.forEach(t => t.classList.remove('active'));
-
-    if (activePanel === id) {
-      activePanel = null;
-      return;
-    }
-
+    if (activePanel === id) { activePanel = null; return; }
     const panel = document.getElementById('panel-' + id);
     const tab = document.getElementById('tab-' + id);
     if (panel && tab) {
@@ -871,9 +748,20 @@
     }
   }
 
-  // Auto-open GDP on load
+  // Ticker: clone items to ensure seamless infinite scroll regardless of screen width
   window.addEventListener('load', () => {
     setTimeout(() => showPanel('gdp'), 400);
+
+    const track = document.getElementById('tickerTrack');
+    const items = track.querySelectorAll('.ticker-item');
+    const half = items.length / 2;
+    // Calculate total width of first half
+    let totalWidth = 0;
+    for (let i = 0; i < half; i++) {
+      totalWidth += items[i].offsetWidth;
+    }
+    // Set animation so it scrolls exactly one half
+    track.style.animationDuration = (totalWidth / 60) + 's';
   });
 </script>
 </body>
